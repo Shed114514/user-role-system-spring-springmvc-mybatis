@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shed.mapper.RoleMapper">
+    
+    <insert id="insert" parameterType="role">
+        INSERT INTO ssm_role VALUES (#{rid},#{roleName},#{roleDesc})
+    </insert>
+    
+    <insert id="insertSelective" parameterType="role">
+        INSERT INTO ssm_role VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                #{rid},
+            <if test="roleName!=null">
+                #{roleName},
+            </if>
+            <if test="roleDesc!=null">
+                #{roleDesc},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        DELETE FROM ssm_role WHERE rid=#{rid}
+    </delete>
+
+    <update id="updateByPrimaryKeySelective" parameterType="role">
+        UPDATE ssm_role
+        <set>
+            <if test="uid!=null">
+                rid=#{rid},
+            </if>
+            <if test="roleName!=null">
+                roleName=#{roleName},
+            </if>
+            <if test="roleDesc!=null">
+                roleDesc=#{roleDesc},
+            </if>
+        </set>
+    </update>
+
+    <select id="selectAll" resultType="role">
+        SELECT * FROM ssm_role
+    </select>
+
+    <select id="selectRoleByUid" resultType="role">
+        SELECT * FROM ssm_user_role ur,ssm_role r WHERE ur.rid=r.rid AND ur.uid=#{arg0}
+    </select>
+</mapper>

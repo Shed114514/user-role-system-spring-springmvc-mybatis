@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--为domain实体的全限名称设置简称-->
+    <typeAliases>
+        <typeAlias type="com.shed.domain.User" alias="user"/>
+        <typeAlias type="com.shed.domain.Role" alias="role"/>
+    </typeAliases>
+
+    <mappers>
+        <mapper resource="mappers/UserMapper.xml"/>
+        <mapper resource="mappers/RoleMapper.xml"/>
+    </mappers>
+    
+</configuration>
